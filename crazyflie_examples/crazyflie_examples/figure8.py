@@ -18,9 +18,11 @@ def main():
     TRIALS = 1
     TIMESCALE = 1.0
     for i in range(TRIALS):
+        print("uploading trajectories...")
         for cf in allcfs.crazyflies:
             cf.uploadTrajectory(0, 0, traj1)
 
+        print("takeoff...")
         allcfs.takeoff(targetHeight=1.0, duration=2.0)
         timeHelper.sleep(2.5)
         for cf in allcfs.crazyflies:
@@ -28,11 +30,13 @@ def main():
             cf.goTo(pos, 0, 2.0)
         timeHelper.sleep(2.5)
 
+        print("starting trajectory...")
         allcfs.startTrajectory(0, timescale=TIMESCALE)
         timeHelper.sleep(traj1.duration * TIMESCALE + 2.0)
         # allcfs.startTrajectory(0, timescale=TIMESCALE, reverse=True)
         # timeHelper.sleep(traj1.duration * TIMESCALE + 2.0)
 
+        print("land...")
         allcfs.land(targetHeight=0.06, duration=2.0)
         timeHelper.sleep(3.0)
 

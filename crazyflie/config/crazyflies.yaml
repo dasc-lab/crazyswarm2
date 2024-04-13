@@ -1,32 +1,90 @@
 # named list of all robots
 robots:
-  cf231:
+  cf1:
     enabled: true
-    uri: radio://0/80/2M/E7E7E7E7E7
-    initial_position: [0, 0, 0]
-    type: cf21  # see robot_types
-    # firmware_params:
-    #   kalman:
-    #     pNAcc_xy: 1.0 # default 0.5
-    # firmware_logging:
-    #   enabled: true
-    #   custom_topics:
-    #     topic_name3: 
-    #       frequency: 1
-    #       vars: ["acc.x", "acc.y"]
+    uri: radio://0/1/250K/E7E7E7E7E7
+    initial_position: [1.2, 1.8, 0.02]
+    type: cf21    # see robot_types
+    firmware_params:
+      kalman:
+        pNAcc_xy: 1.0 # default 0.5
+    firmware_logging:
+      enabled: false
+      custom_topics:
+        topic_name3:
+          frequency: 30
+          vars: [acc.x, acc.y, acc.z, gyro.x, gyro.y, gyro.z]
+  cf42:
+    enabled: false
+    uri: radio://0/42/250K/E7E7E7E7E7
+    initial_position: [1.2, 0.0, 0.02]
+    type: cf21    # see robot_types
+    firmware_params:
+      kalman:
+        pNAcc_xy: 1.0 # default 0.5
+    firmware_logging:
+      enabled: true
+      custom_topics:
+        topic_name3:
+          frequency: 30
+          vars: [acc.x, acc.y, acc.z, gyro.x, gyro.y, gyro.z]
+  cf3:
+    enabled: false
+    uri: radio://0/3/250K/E7E7E7E7E7
+    initial_position: [-1.2, 1.8, 0.02]
+    type: cf21    # see robot_types
+    firmware_params:
+      kalman:
+        pNAcc_xy: 1.0 # default 0.5
+    firmware_logging:
+      enabled: false
+      custom_topics:
+        topic_name3:
+          frequency: 30
+          vars: [acc.x, acc.y, acc.z, gyro.x, gyro.y, gyro.z]
+
+  cf4:
+    enabled: false
+    uri: radio://0/4/250K/E7E7E7E7E7
+    initial_position: [-1.2, 0.03, 0.02]
+    type: cf21_mocap_deck    # see robot_types
+    firmware_params:
+      kalman:
+        pNAcc_xy: 1.0 # default 0.5
+    firmware_logging:
+      enabled: false
+      custom_topics:
+        topic_name3:
+          frequency: 30
+          vars: [acc.x, acc.y, acc.z, gyro.x, gyro.y, gyro.z]
   cf5:
     enabled: false
-    uri: radio://0/80/2M/E7E7E7E705
-    initial_position: [0, -0.5, 0]
-    type: cf21  # see robot_types
-    # firmware_params:
-    #   kalman:
-    #     pNAcc_xy: 1.0 # default 0.5
-    #firmware_logging:
-    #  custom_topics:
-    #    topic_name3: 
-    #      frequency: 1
-    #      vars: ["acc.x", "acc.y", "acc.z"]
+    uri: radio://0/5/250K/E7E7E7E7E7
+    initial_position: [-1.2, 0.03, 0.02]
+    type: cf21_mocap_deck    # see robot_types
+    firmware_params:
+      kalman:
+        pNAcc_xy: 1.0 # default 0.5
+    firmware_logging:
+      enabled: false
+      custom_topics:
+        topic_name3:
+          frequency: 30
+          vars: [acc.x, acc.y, acc.z, gyro.x, gyro.y, gyro.z]
+  cf6:
+    enabled: false
+    uri: radio://0/6/250K/E7E7E7E7E7
+    initial_position: [0.6, 0.6, 0.02]
+    type: cf21_mocap_deck    # see robot_types
+    firmware_params:
+      kalman:
+        pNAcc_xy: 1.0 # default 0.5
+    firmware_logging:
+      enabled: false
+      custom_topics:
+        topic_name3:
+          frequency: 30
+          vars: [acc.x, acc.y, acc.z, gyro.x, gyro.y, gyro.z]
 # Definition of the various robot types
 robot_types:
   cf21:
@@ -56,7 +114,7 @@ robot_types:
     motion_capture:
       enabled: true
       # only if enabled; see motion_capture.yaml
-      marker: mocap_deck
+      marker: single_marker
       dynamics: default
     big_quad: false
     battery:
@@ -72,17 +130,16 @@ all:
   # firmware logging for all drones (use robot_types/type_name to set per type, or
   # robots/drone_name to set per drone)
   firmware_logging:
-    enabled: true
+    enabled: false
     default_topics:
      # remove to disable default topic
       pose:
-        frequency: 10 # Hz
-      status:
-        frequency: 1 # Hz
-    #custom_topics:
-    #  topic_name1:
-    #    frequency: 10 # Hz
-    #    vars: ["stateEstimateZ.x", "stateEstimateZ.y", "stateEstimateZ.z", "pm.vbat"]
+        frequency: 30 # Hz
+    custom_topics:
+      topic_name1:
+        frequency: 30 # Hz
+       # vars: ["stateEstimateZ.x", "stateEstimateZ.y", "stateEstimateZ.z", "stateEstimateZ.roll", "stateEstimateZ.pitch", "stateEstimateZ.yaw"]
+        vars: [stateEstimate.x, stateEstimate.y, stateEstimate.z]
     #  topic_name2:
     #    frequency: 1 # Hz
     #    vars: ["stabilizer.roll", "stabilizer.pitch", "stabilizer.yaw"]

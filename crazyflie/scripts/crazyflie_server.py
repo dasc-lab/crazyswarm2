@@ -210,6 +210,7 @@ class CrazyflieServer(Node):
 
         # Now all crazyflies are initialized, open links!
         try:
+            print("Do you bleed?")
             self.swarm.open_links()
         except Exception as e:
             # Close node if one of the Crazyflies can not be found

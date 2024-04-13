@@ -174,7 +174,7 @@ if __name__ == '__main__':
 		nodes = selected_cfs()
 		for name, crazyflie in nodes.items():
 			uri = crazyflie["uri"]
-			print(name)
+			print(name, uri)
 			subprocess.call(["ros2 run crazyflie reboot --uri " + uri], shell=True)
 
 	def flashSTM():
